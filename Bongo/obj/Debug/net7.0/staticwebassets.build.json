@@ -1,0 +1,54 @@
+{
+  "Version": 1,
+  "Hash": "Zgx0jIC/rFvWjM8rBynfoQWqsj3NbXhR2shxqRRQGpk=",
+  "Source": "Bongo",
+  "BasePath": "_content/Bongo",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "Bongo\\wwwroot",
+      "Source": "Bongo",
+      "ContentRoot": "C:\\Users\\20208\\Desktop\\New folder\\Bongo4Students\\Bongo\\wwwroot\\",
+      "BasePath": "_content/Bongo",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "C:\\Users\\20208\\Desktop\\New folder\\Bongo4Students\\Bongo\\obj\\Debug\\net7.0\\scopedcss\\bundle\\Bongo.styles.css",
+      "SourceId": "Bongo",
+      "SourceType": "Computed",
+      "ContentRoot": "C:\\Users\\20208\\Desktop\\New folder\\Bongo4Students\\Bongo\\obj\\Debug\\net7.0\\scopedcss\\bundle\\",
+      "BasePath": "_content/Bongo",
+      "RelativePath": "Bongo.styles.css",
+      "AssetKind": "All",
+      "AssetMode": "CurrentProject",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "ScopedCss",
+      "AssetTraitValue": "ApplicationBundle",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "C:\\Users\\20208\\Desktop\\New folder\\Bongo4Students\\Bongo\\obj\\Debug\\net7.0\\scopedcss\\bundle\\Bongo.styles.css"
+    },
+    {
+      "Identity": "C:\\Users\\20208\\Desktop\\New folder\\Bongo4Students\\Bongo\\obj\\Debug\\net7.0\\scopedcss\\projectbundle\\Bongo.bundle.scp.css",
+      "SourceId": "Bongo",
+      "SourceType": "Computed",
+      "ContentRoot": "C:\\Users\\20208\\Desktop\\New folder\\Bongo4Students\\Bongo\\obj\\Debug\\net7.0\\scopedcss\\projectbundle\\",
+      "BasePath": "_content/Bongo",
+      "RelativePath": "Bongo.bundle.scp.css",
+      "AssetKind": "All",
+      "AssetMode": "Reference",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "ScopedCss",
+      "AssetTraitValue": "ProjectBundle",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "C:\\Users\\20208\\Desktop\\New folder\\Bongo4Students\\Bongo\\obj\\Debug\\net7.0\\scopedcss\\projectbundle\\Bongo.bundle.scp.css"
+    }
+  ]
+}

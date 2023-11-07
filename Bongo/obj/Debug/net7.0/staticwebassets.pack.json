@@ -1,0 +1,25 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\Users\\20208\\Desktop\\New folder\\Bongo4Students\\Bongo\\obj\\Debug\\net7.0\\scopedcss\\projectbundle\\Bongo.bundle.scp.css",
+      "PackagePath": "staticwebassets\\Bongo.bundle.scp.css"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.Bongo.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.build.Bongo.props",
+      "PackagePath": "build\\Bongo.props"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.buildMultiTargeting.Bongo.props",
+      "PackagePath": "buildMultiTargeting\\Bongo.props"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.buildTransitive.Bongo.props",
+      "PackagePath": "buildTransitive\\Bongo.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

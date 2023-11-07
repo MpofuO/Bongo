@@ -1,0 +1,141 @@
+is_global = true
+build_property.TargetFramework = net7.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = Bongo4Students
+build_property.RootNamespace = Bongo4Students
+build_property.ProjectDir = C:\Users\20208\Desktop\New folder\Bongo4Students\Bongo\
+build_property.RazorLangVersion = 7.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = C:\Users\20208\Desktop\New folder\Bongo4Students\Bongo
+build_property._RazorSourceGeneratorDebug = 
+
+[C:/Users/20208/Desktop/New folder/Bongo4Students/Bongo/Areas/Timetable/Views/LandingPage/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcVGltZXRhYmxlXFZpZXdzXExhbmRpbmdQYWdlXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/20208/Desktop/New folder/Bongo4Students/Bongo/Areas/Timetable/Views/Session/AddSession.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcVGltZXRhYmxlXFZpZXdzXFNlc3Npb25cQWRkU2Vzc2lvbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/20208/Desktop/New folder/Bongo4Students/Bongo/Areas/Timetable/Views/Session/Clashes.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcVGltZXRhYmxlXFZpZXdzXFNlc3Npb25cQ2xhc2hlcy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/20208/Desktop/New folder/Bongo4Students/Bongo/Areas/Timetable/Views/Session/ConfirmGroup.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcVGltZXRhYmxlXFZpZXdzXFNlc3Npb25cQ29uZmlybUdyb3VwLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/20208/Desktop/New folder/Bongo4Students/Bongo/Areas/Timetable/Views/Session/EditColors.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcVGltZXRhYmxlXFZpZXdzXFNlc3Npb25cRWRpdENvbG9ycy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/20208/Desktop/New folder/Bongo4Students/Bongo/Areas/Timetable/Views/Session/Groups.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcVGltZXRhYmxlXFZpZXdzXFNlc3Npb25cR3JvdXBzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/20208/Desktop/New folder/Bongo4Students/Bongo/Areas/Timetable/Views/Session/SessionDetails.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcVGltZXRhYmxlXFZpZXdzXFNlc3Npb25cU2Vzc2lvbkRldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/20208/Desktop/New folder/Bongo4Students/Bongo/Areas/Timetable/Views/Session/TimeTableFileUpload.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcVGltZXRhYmxlXFZpZXdzXFNlc3Npb25cVGltZVRhYmxlRmlsZVVwbG9hZC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/20208/Desktop/New folder/Bongo4Students/Bongo/Areas/Timetable/Views/Shared/_EditSessionModal.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcVGltZXRhYmxlXFZpZXdzXFNoYXJlZFxfRWRpdFNlc3Npb25Nb2RhbC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/20208/Desktop/New folder/Bongo4Students/Bongo/Areas/Timetable/Views/Shared/_ToolsNavBarPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcVGltZXRhYmxlXFZpZXdzXFNoYXJlZFxfVG9vbHNOYXZCYXJQYXJ0aWFsLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/20208/Desktop/New folder/Bongo4Students/Bongo/Areas/Timetable/Views/Timetable/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcVGltZXRhYmxlXFZpZXdzXFRpbWV0YWJsZVxFcnJvci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/20208/Desktop/New folder/Bongo4Students/Bongo/Areas/Timetable/Views/Timetable/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcVGltZXRhYmxlXFZpZXdzXFRpbWV0YWJsZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/20208/Desktop/New folder/Bongo4Students/Bongo/Areas/Timetable/Views/Timetable/UploadModal.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcVGltZXRhYmxlXFZpZXdzXFRpbWV0YWJsZVxVcGxvYWRNb2RhbC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/20208/Desktop/New folder/Bongo4Students/Bongo/Areas/Timetable/Views/UserReview/AddReview.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcVGltZXRhYmxlXFZpZXdzXFVzZXJSZXZpZXdcQWRkUmV2aWV3LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/20208/Desktop/New folder/Bongo4Students/Bongo/Areas/Timetable/Views/UserReview/ListReviews.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcVGltZXRhYmxlXFZpZXdzXFVzZXJSZXZpZXdcTGlzdFJldmlld3MuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/20208/Desktop/New folder/Bongo4Students/Bongo/Areas/Timetable/Views/UserReview/ListUsers.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcVGltZXRhYmxlXFZpZXdzXFVzZXJSZXZpZXdcTGlzdFVzZXJzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/20208/Desktop/New folder/Bongo4Students/Bongo/Areas/Timetable/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcVGltZXRhYmxlXFZpZXdzXF9WaWV3U3RhcnQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/20208/Desktop/New folder/Bongo4Students/Bongo/Views/Account/AskSecurityQuestion.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxBc2tTZWN1cml0eVF1ZXN0aW9uLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/20208/Desktop/New folder/Bongo4Students/Bongo/Views/Account/ConfirmEmail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxDb25maXJtRW1haWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/20208/Desktop/New folder/Bongo4Students/Bongo/Views/Account/ForgotPassword.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxGb3Jnb3RQYXNzd29yZC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/20208/Desktop/New folder/Bongo4Students/Bongo/Views/Account/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxMb2dpbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/20208/Desktop/New folder/Bongo4Students/Bongo/Views/Account/Register.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxSZWdpc3Rlci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/20208/Desktop/New folder/Bongo4Students/Bongo/Views/Account/ResetPassword.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxSZXNldFBhc3N3b3JkLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/20208/Desktop/New folder/Bongo4Students/Bongo/Views/Account/SecurityQuestion.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxTZWN1cml0eVF1ZXN0aW9uLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/20208/Desktop/New folder/Bongo4Students/Bongo/Views/Account/SignIn.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxTaWduSW4uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/20208/Desktop/New folder/Bongo4Students/Bongo/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/20208/Desktop/New folder/Bongo4Students/Bongo/Views/Shared/_LoginLayout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Mb2dpbkxheW91dC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/20208/Desktop/New folder/Bongo4Students/Bongo/Views/Shared/_NoticeModalPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Ob3RpY2VNb2RhbFBhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/20208/Desktop/New folder/Bongo4Students/Bongo/Views/Shared/_TermsAndPrivacyModal.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9UZXJtc0FuZFByaXZhY3lNb2RhbC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/20208/Desktop/New folder/Bongo4Students/Bongo/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/20208/Desktop/New folder/Bongo4Students/Bongo/Areas/Timetable/Views/Shared/_TimetableAreaLayout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcVGltZXRhYmxlXFZpZXdzXFNoYXJlZFxfVGltZXRhYmxlQXJlYUxheW91dC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = b-jhbw27opy4
