@@ -7,7 +7,7 @@
 
 
 
-<div class="account-forms position-relative shadow mt-5">
+<div class="account-forms position-relative shadow mt-3">
     @if (TempData["Message"] != null)
     {
         <div class="alert alert-warning alert-dismissible fade show alert-login" role="alert">
@@ -68,7 +68,7 @@
             | Privacy policy
         </a>
     </div>
-    <a class=" text-decoration-none" asp-controller="Account" asp-action="Login"><i class="fa-solid fa-arrow-left fa-xl me-2"></i>Back</a>
+    <a class=" text-decoration-none" href="javascript:window.history.go(-1)"><i class="fa-solid fa-arrow-left fa-xl me-2"></i>Back</a>
 </div>
 
 

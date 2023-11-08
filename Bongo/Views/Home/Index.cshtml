@@ -1,5 +1,60 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿<div class="home-menu">
+    <div class="half-menu">
+        <div class="m-1 menu-card">
+            <a asp-area="TimetableArea" asp-controller="Timetable" asp-action="Upload"
+                title="Create timetable" class="">
+                <div>
+                    <div class="icon">
+                        <i class="fa-solid fa-table text-warning"></i>
+                    </div>
+                    <h4>Create timetable</h4>
+                    <div class="">
+                        <p>Easily create your timetable from your UFS personal timetable or from scratch.</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="m-1 menu-card">
+            <a asp-area="TimetableArea" asp-controller="Timetable" asp-action="Merge"
+               title="Merge timetables" class="">
+                <div>
+                    <div class="icon">
+                        <i class="fa-solid fa-object-ungroup text-danger"></i>
+                    </div>
+                    <h4>Merge timetables</h4>
+                    <div class="">
+                        <p>Know the times when are you and your friends all free by merging your Bongo timetables.</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+    <div class="half-menu mt-1">
+        <div class="m-1 menu-card">
+            <a title="Find a tutor" class="">
+                <div>
+                    <div class="icon">
+                        <i class="fa-solid fa-chalkboard-user text-success"></i>
+                    </div>
+                    <h4>Find a tutor</h4>
+                    <div class="">
+                        <p>Need a tutor? Tell us the module and we will find a tutor for you to help you with your academic needs.</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="m-1 menu-card">
+            <a title="Be a tutor" class="">
+                <div>
+                    <div class="icon">
+                        <i class="fa-solid fa-person-chalkboard text-primary"></i>
+                    </div>
+                    <h4>Be a tutor</h4>
+                    <div class="">
+                        <p>Have a module you excelled in? Then apply to be one of our excellent tutors on standby and use your skills to your benefit and the benefit of others.</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>

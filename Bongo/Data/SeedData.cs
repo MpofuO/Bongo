@@ -1,7 +1,5 @@
-﻿using Bongo.Models;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
-
+﻿using Microsoft.EntityFrameworkCore;
+using Bongo.Areas.TimetableArea.Models;
 namespace Bongo.Data
 {
     public class SeedData

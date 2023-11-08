@@ -7,10 +7,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Areas\Tutoring\Controllers\" />
-    <Folder Include="Areas\Tutoring\Infrastructure\" />
-    <Folder Include="Areas\Tutoring\Views\" />
-    <Folder Include="wwwroot\" />
+    <Folder Include="Areas\TutoringArea\Controllers\" />
+    <Folder Include="Areas\TutoringArea\Infrastructure\" />
+    <Folder Include="Areas\TutoringArea\Views\" />
   </ItemGroup>
 
   <ItemGroup>

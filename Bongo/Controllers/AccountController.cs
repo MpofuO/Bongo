@@ -1,4 +1,5 @@
-﻿using Bongo.Models;
+﻿using Bongo.Areas.TimetableArea.Data;
+using Bongo.Models;
 using Bongo.Models.ViewModels;
 using Bongo.Services;
 using Microsoft.AspNetCore.Authorization;
@@ -29,14 +30,6 @@ namespace Bongo.Controllers
         [TempData]
         public string Message { get; set; }
 
-
-
-
-        [AllowAnonymous]
-        public IActionResult Login()
-        {
-            return View();
-        }
         [AllowAnonymous]
         public IActionResult SignIn(string returnUrl)
         {
@@ -65,7 +58,7 @@ namespace Bongo.Controllers
                             new CookieOptions { Expires = DateTime.Now.AddDays(90) }
                             );
                         if (user.SecurityQuestion != default)
-                            return RedirectToAction("TimeTableFileUpload", "Session");
+                            return RedirectToAction("Index", "Home");
                         else
                             return RedirectToAction("SecurityQuestion", new { username = user.UserName, sendingAction = "LogIn" });
                     }
@@ -258,19 +251,20 @@ namespace Bongo.Controllers
                 user.SecurityQuestion = model.SecurityQuestion;
                 user.SecurityAnswer = model.SecurityAnswer;
                 await _userManager.UpdateAsync(user);
+                Message = "Successfully registered";
                 bool fromRegister = model.SendingAction == "Register";
                 if (fromRegister)
-                    Message = "Successfully registered";
-                return RedirectToAction(fromRegister ? "SignIn" : "TimeTableFileUpload", fromRegister ? "Account" : "Session");
+                {
+                    return RedirectToAction("SignIn", "Account");
+                }
+                return RedirectToAction("Index", "Home");
             }
             return View(model);
         }
-
-        [HttpPost]
         public async Task<IActionResult> Logout()
         {
             await _signInManager.SignOutAsync();
-            return RedirectToAction("Login", "Account");
+            return RedirectToAction("Index", "Home");
         }
 
         [AllowAnonymous]

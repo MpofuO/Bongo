@@ -1,0 +1,112 @@
+﻿<!DOCTYPE html>
+
+<html lang="en">
+@{
+    string activeController = ViewContext.RouteData.Values["controller"].ToString();
+    string activeAction = ViewContext.RouteData.Values["action"].ToString();
+    string disableLink = activeController == "Session" ? "disabled" : "";
+}
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Bongo is a web app designed to simplify the process of creating timetables for students. Our goal is to help you optimize your schedule and make the most out of your academic journey.">
+    <meta name="keywords" content="Bongo, timetable, scheduling, students, academic, optimization, web app, UFS">
+    <meta name="author" content="Bongo">
+    <meta name="robots" content="index, follow">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <link rel="stylesheet" asp-href-include="/css/site.css" />
+    <link rel="stylesheet" asp-href-include="/lib/font-awesome/css/all.min.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+          crossorigin="anonymous" />
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
+          rel="stylesheet" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+    <link rel="manifest" href="/images/site.webmanifest">
+    <title>@ViewBag.Title</title>
+</head>
+<body>
+    <header class="container-fluid">
+        <nav class="navbar navbar-expand-sm navbar-light shadow">
+            <a class="navbar-brand logo fs-1" href="#">Bongo</a>
+            <button class="navbar-toggler d-lg-none"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#collapsibleNavId"
+                    aria-controls="collapsibleNavId"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon text-dark"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="collapsibleNavId">
+                <ul class="navbar-nav ms-auto me-3 mt-2 mt-lg-1">
+                    @if (activeController != "Home" && activeAction != "Index")
+                    {
+                        <li class="nav-item">
+                            <a href="#how-it-works-section" class="nav-link">HOME</a>
+                        </li>
+                    }
+                    <li class="nav-item">
+                        <a href="#testimonial" class="nav-link">TIMETABLE TOOLS</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#testimonial" class="nav-link">TUTORING</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#about" class="nav-link">ABOUT US</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav ms-auto mt-2 mt-lg-1">
+                    @if (!User.Identity.IsAuthenticated)
+                    {
+                        <li class="nav-item">
+                            <a id="openSignInModalButton" asp-controller="Account" asp-action="SignIn"
+                               class="btn btn-primary me-2 shadow">
+                                Login
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a id="openRegisterModalButton" asp-controller="Account" asp-action="Register"
+                               class="btn btn-outline-primary me-1 shadow">
+                                Sign Up
+                            </a>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="nav-item">
+                            <a asp-controller="Account" asp-action="Logout"
+                               class="nav-link">Logout</a>
+                        </li>
+                    }
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <main>
+        @RenderBody()
+    </main>
+</body>
+<footer class="border-top footer text-muted">
+    <div class="container text-center">
+        &copy; @DateTime.Today.Year - Bongo
+    </div>
+</footer>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/js/site.js" asp-append-version="true"></script>
+</html>
+@await Html.PartialAsync("_TermsAndPrivacyModal")
+
+
