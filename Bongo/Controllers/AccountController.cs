@@ -31,6 +31,12 @@ namespace Bongo.Controllers
         public string Message { get; set; }
 
         [AllowAnonymous]
+        public IActionResult Login(string returnUrl)
+        {
+            return RedirectToAction("SignIn", new { returnUrl = returnUrl });
+        }
+
+        [AllowAnonymous]
         public IActionResult SignIn(string returnUrl)
         {
             return View(new LoginViewModel
