@@ -65,8 +65,8 @@ $('#LoginModal form').submit(function (event) {
         error: function () {
             // Handle error
            *//* $('#modal-error').html(data);
- $('#LoginModal').modal('show');
- console.log(data);*//*
+$('#LoginModal').modal('show');
+console.log(data);*//*
 // Re-enable client-side validation after updating the form content
 $.validator.unobtrusive.parse('#LoginModal form');
 alert('An error occurred during the login process. Please try again.');
@@ -87,6 +87,38 @@ $("document").ready(function () {
 $(document).ready(function () {
     $('#noticeModal').modal('show');
 });
+
+function searchUsers() {
+
+    var search = document.getElementById('search');
+    var searchedUsersList = document.getElementById('searchedUsers');
+    if (search.value == '') {
+        searchedUsersList.hidden = true;
+    }
+    else {
+        let listItems = document.querySelectorAll('#userList li');
+        searchedUsersList.innerHTML = '';
+
+        listItems.forEach(item => {
+            if (item.textContent.toLowerCase().includes(search.value.toLowerCase())) {
+                var li = document.createElement('li');
+                li.className = 'search-li';
+                var a = document.createElement('a');
+                a.href = 'AddUserTimetable?username=' + item.textContent;
+                a.className = 'btn w-100 d-flex justtify-content-start';
+                a.style.zIndex = 2;
+
+                var text = document.createTextNode(item.textContent);
+
+                a.appendChild(text);
+                li.appendChild(a);
+                searchedUsersList.appendChild(li);
+            }
+        });
+
+        searchedUsersList.hidden = false;
+    }
+}
 
 
 

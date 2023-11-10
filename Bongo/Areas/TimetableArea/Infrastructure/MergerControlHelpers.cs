@@ -42,7 +42,7 @@ namespace Bongo.Areas.TimetableArea.Infrastructure
                 }
 
                 SplitRangeHourly(Sessions, minHour, maxHour, day);
-                
+
             }
         }
         private static int[] getHourRange(string sessionInPDFValue)
@@ -62,7 +62,7 @@ namespace Bongo.Areas.TimetableArea.Infrastructure
                 string hour = i < 10 ? $"0{i}" : $"{i}";
 
                 int[] period = Periods.GetPeriod(hour, day);
-                Sessions[period[0], period[1]] = new Session();
+                Sessions[period[0], period[1]] = new Session() { Period = period };
             }
         }
         public static void HandleGroups(Session[,] Sessions, List<Lecture> groups)
@@ -74,11 +74,14 @@ namespace Bongo.Areas.TimetableArea.Infrastructure
         {
             int iMax = Sessions.GetLength(0), jMax = Sessions.GetLength(1);
             Session[,] _Sessions = new Session[iMax, jMax];
-            for(int i = 0; i<iMax;i++)
+            for (int i = 0; i < iMax; i++)
             {
                 for (int j = 0; j < jMax; j++)
                     if (Sessions[i, j] != null)
-                        _Sessions[i, j] = new Session();
+                        _Sessions[i, j] = new Session()
+                        {
+                            Period = new int[] { i, j }
+                        };
             }
 
             return _Sessions;

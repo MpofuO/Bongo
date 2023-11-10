@@ -2,29 +2,34 @@
 using Bongo.Areas.TimetableArea.Models;
 using Bongo.Areas.TimetableArea.Models.ViewModels;
 using Bongo.Data;
+using Bongo.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Bongo.Areas.TimetableArea.Controllers
 {
     [Authorize]
+    [Area("TimetableArea")]
     public class MergerController : Controller
     {
         private static IRepositoryWrapper repository;
+        private static UserManager<BongoUser> userManager;
         private static TimetableProcessor processor;
         private static bool _isForFirstSemester;
         private static List<List<Session>> clashes;
         private static List<Lecture> groups;
         private static List<string> mergedUsers;
         private static string mergedText; 
-        public MergerController(IRepositoryWrapper _repository)
+        public MergerController(IRepositoryWrapper _repository, UserManager<BongoUser> _userManager)
         {
             repository = _repository;
-            mergedUsers = new List<string>();
+            userManager = _userManager;
         }
         public IActionResult SetSemester(bool isForFirstSemester)
         {
             _isForFirstSemester = isForFirstSemester;
+            mergedUsers = new List<string>();
             return RedirectToAction("ReviewCurrentUser");
         }
         public IActionResult ReviewCurrentUser()
@@ -50,7 +55,8 @@ namespace Bongo.Areas.TimetableArea.Controllers
             return View(new MergerIndexViewModel
             {
                 Sessions = Sessions,
-                MergedUsers = mergedUsers
+                MergedUsers = mergedUsers,
+                Users = userManager.Users.Select(u => u.UserName).ToList()
             });
         }
 
@@ -64,7 +70,17 @@ namespace Bongo.Areas.TimetableArea.Controllers
 
                 if(clashes.Count>0 || groups.Count > 0)
                 {
-                    goto onError;
+                    if (username == User.Identity.Name)
+                    {
+                        TempData["Message"] = "Please ensure that you have managed your clashes and/groups before merging with others.";
+                        return RedirectToAction("Upload", "Timetable");
+                    }
+                    else
+                    {
+                        TempData["Message"] = $"Could not merge with {username}'s timetable.\n" +
+                            $"Please ensure that {username} has managed their clashes and/groups before merging with them.";
+                        return RedirectToAction("Upload", "Timetable");
+                    }
                 }
 
                 mergedUsers.Add(username);
@@ -72,18 +88,9 @@ namespace Bongo.Areas.TimetableArea.Controllers
                 return RedirectToAction("Index");
             }
 
-            onError:
-            if(username == User.Identity.Name)
-            {
-                TempData["Message"] = "Please ensure that you have managed your clashes and/groups before merging with others.";
-                return RedirectToAction("Upload", "Timetable");
-            }
-            else
-            {
-                TempData["Message"] = $"Could not merge with {username}'s timetable.\n" +
-                    $"Please ensure that {username} has managed their clashes and/groups before merging with them.";
-                return RedirectToAction("Upload", "Timetable");
-            }
+            TempData["Message"] = $"Could not merge with {username}'s timetable.\n" +
+                            $"Please ensure that {username} has created their timetable before merging with them."; 
+            return RedirectToAction("Index");
         }
         public IActionResult RemoveUserTimetable(string username)
         {
