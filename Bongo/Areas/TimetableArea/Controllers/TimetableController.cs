@@ -38,10 +38,10 @@ namespace Bongo.Areas.TimetableArea.Controllers
         #region Hepler Methods
         private IActionResult StartBlank()
         {
-            Timetable newTimetale = new Timetable { TimetableText = "", Username = User.Identity.Name };
-            _repository.Timetable.Update(newTimetale);
+            Timetable table = new Timetable { TimetableText = "", Username = User.Identity.Name };
+            _repository.Timetable.Update(table);
             _repository.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Display");
         }
         public string GetTime(int i)
         {
@@ -165,15 +165,15 @@ namespace Bongo.Areas.TimetableArea.Controllers
                             Regex pattern = new Regex(@"205 Nelson Mandela Drive  \|  Park West, Bloemfontein 9301 \| South Africa\nP\.O\. Box 339  \|  Bloemfontein 9300  \|  South Africa \| www\.ufs\.ac\.za|\nVenue Start End Day From To|Venue Start End Day From To\n");//|\(Group [A-Z]{1,2}\)|
                             text = pattern.Replace(text, String.Empty);
 
-                            Timetable newTimetale = new Timetable { TimetableText = text, Username = User.Identity.Name };
-                            _repository.Timetable.Update(newTimetale);
-                            SessionControlHelpers.AddNewUserModuleColor(ref _repository, User.Identity.Name, newTimetale.TimetableText);
+                            Timetable newTimetable = new Timetable { TimetableText = text, Username = User.Identity.Name };
+                            _repository.Timetable.Update(newTimetable);
+                            SessionControlHelpers.AddNewUserModuleColor(ref _repository, User.Identity.Name, newTimetable.TimetableText);
                             _repository.SaveChanges();
 
 
                             SetCookie("isForFirstSemester", isFirstSemester.ToString().ToLower());
 
-                            return RedirectToAction("Upload", new { isForFirstSemester = Request.Cookies["isForFirstSemester"] });
+                            return RedirectToAction("Display");
                         }
                         else
                             ModelState.AddModelError("", "Something went wrong while uploading timetable. " +
@@ -195,6 +195,28 @@ namespace Bongo.Areas.TimetableArea.Controllers
 
             return View();
         }
+        [HttpPost]
+        public IActionResult ClearTable(int id)
+        {
+            Timetable table = _repository.Timetable.GetUserTimetable(User.Identity.Name);
+            var moduleColor = _repository.ModuleColor.GetByCondition(m => m.Username == User.Identity.Name);
+            if (table != null)
+            {
+                _repository.Timetable.Delete(table);
+
+            }
+            if (moduleColor != null)
+            {
+                foreach (var item in moduleColor)
+                {
+                    _repository.ModuleColor.Delete(item);
+                }
+            }
+            _repository.SaveChanges();
+            if (id == 0)
+                return StartBlank();
+            return RedirectToAction("Upload");
+        }
         public ActionResult Print()
         {
             int latestPeriod = int.Parse(Request.Cookies["latestPeriod"]);
@@ -206,7 +228,7 @@ namespace Bongo.Areas.TimetableArea.Controllers
             Timetable table_ = _repository.Timetable.GetUserTimetable(User.Identity.Name);
 
             if (table_ == null)
-                return RedirectToAction("TimeTableFileUpload", "Session");
+                return RedirectToAction("Upload");
 
             TimetableProcessor processor = new TimetableProcessor(table_.TimetableText, Request.Cookies["isForFirstSemester"] == "true");
             Session[,] data = processor.GetSessionsArray(out ClashesList, out GroupedList);
@@ -389,7 +411,7 @@ namespace Bongo.Areas.TimetableArea.Controllers
 
                 PdfPageTemplateElement footer = new PdfPageTemplateElement(bounds);
 
-                footer.Graphics.DrawString("\n\n\n\n\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tBongo v1 | \u00A9 " + DateTime.Now.Year,
+                footer.Graphics.DrawString("\n\n\n\n\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tBongo | \u00A9 " + DateTime.Now.Year,
                     new PdfStandardFont(PdfFontFamily.Helvetica, 10, PdfFontStyle.Bold), PdfBrushes.LightGray, bounds);
 
                 document.Template.Bottom = footer;
@@ -427,7 +449,7 @@ namespace Bongo.Areas.TimetableArea.Controllers
             Response.Cookies.Append("Notified", user.Notified.ToString().ToLower(),
                             new CookieOptions { Expires = DateTime.Now.AddDays(90) }
                             );
-            return RedirectToAction("Index");
+            return RedirectToAction("Display");
         }
 
         [HttpGet]

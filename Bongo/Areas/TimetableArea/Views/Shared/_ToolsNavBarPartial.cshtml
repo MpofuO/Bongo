@@ -64,7 +64,7 @@
             </a>
             <ul class="dropdown-menu dropdown-menu-end text-small shadow position-absolute" aria-labelledby="dropdownUser2">
                 <li>
-                    <form asp-controller="Home" asp-action="UpdateCookie"
+                    <form asp-controller="Timetable" asp-action="UpdateCookie"
                           asp-route-key="isForFirstSemester" asp-route-value="@((!ViewBag.isForFirstSemester).ToString().ToLower())" method="post">
                         <button class="text-dark nav-link border-0 toogle-btn" title="Switch between Semester 1 and 2">
                             Semester @(semester == "1" ? "2" : "1")

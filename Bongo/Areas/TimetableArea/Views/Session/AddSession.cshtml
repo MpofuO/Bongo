@@ -5,8 +5,8 @@
 }
 
 <div class="session-prep bg-light shadow w-sm-50">
-    <h4 class="mb-5">Add Session</h4>
-    <form asp-action="AddSession" method="post">
+    <h4 class="mb-3">Add Session</h4>
+    <form asp-action="AddSession" method="post" style="display:grid;">
         <div asp-validation-summary="All" class="text-danger"></div>
 
         <div class="mb-3">
@@ -20,7 +20,8 @@
                 <option>Practical</option>
                 <option>Tutorial</option>
             </select>
-            <input asp-for="SessionNumber" class="form-control d-inline add-session-number" style="width:10%;"  min="0" max="10"/>
+            <input asp-for="SessionNumber" class="form-control d-inline add-session-number" 
+            style="width:10%;"  min="1" max="10" value="1"/>
         </div>
         <div class="mb-3">
             <h5 class="form-label">Venue</h5>
@@ -43,7 +44,7 @@
             }
         </div>
         <div class="d-flex session-prep-buttons">
-            <a href="javascript:window.history.go(-1)" title="Go back"><i class=" fa-solid fa-arrow-left"></i></a>
+            <a class="btn btn-outline-primary mx-3" href="javascript:window.history.go(-1)" title="Go back"><i class=" fa-solid fa-arrow-left"></i></a>
             <button class="btn btn-primary" type="submit" title="Add Session"><i class=" fa-solid fa-plus"></i></button>
         </div>
     </form>

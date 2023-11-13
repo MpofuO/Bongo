@@ -80,6 +80,7 @@ main {
     #colorSelect, .colorSelect {
         width: 100% !important;
     }
+
     .account-forms span {
         font-size: 8px;
     }
@@ -151,7 +152,6 @@ main {
     .alert-login {
         left: 10%;
     }
-   
 }
 
 
@@ -190,6 +190,7 @@ option[disabled] {
 
 
 .session-prep-buttons {
+    justify-self:end;
     position: sticky;
     bottom: 0;
     right: 0;
@@ -321,42 +322,51 @@ option[disabled] {
     padding: 0 !important;
 }
 
-@media only screen and (max-width: 800px){
+@media only screen and (max-width: 800px) {
     .add-module-code {
-        width:80% !important;
+        width: 80% !important;
     }
-    
+
     .add-session-type {
-        width:50% !important;
+        width: 50% !important;
     }
 
     .add-session-number {
-        width:25% !important;
+        width: 25% !important;
     }
 
     .add-venue {
-        width:80% !important;
+        width: 80% !important;
     }
 
     .add-day {
-        width:60% !important;
+        width: 60% !important;
     }
 
     .add-time {
-        width:60% !important;
+        width: 60% !important;
     }
 
     .detail-venue {
-        width:90% !important;
+        width: 90% !important;
     }
 }
 
-.search-li{
-    list-style:none;
-    border-radius:5px;
-    transition:background-color linear .1s;
+.search-li {
+    list-style: none;
+    border-radius: 5px;
+    transition: background-color linear .1s;
 }
 
     .search-li:hover {
         background-color: lightgrey;
     }
+
+a#remove{
+    border-radius:8px;
+    padding: 0px 7px;
+}
+
+a#remove:hover {
+    background-color:gainsboro;
+}

@@ -1,11 +1,11 @@
 ﻿@model IFormFile
 
 @{
-    ViewData["Title"] = "Timetable File Upload";
+    ViewData["Title"] = "Upload timetable";
 }
 
 <div class="session-prep bg-light shadow w-sm-50">
-    <form asp-action="TimeTableFileUpload" method="post" enctype="multipart/form-data">
+    <form asp-action="Upload" method="post" enctype="multipart/form-data">
         <div class="mb-2">
             <h4 for="file">Upload your UFS Personal Timetable to continue</h4>
             <div class="text-danger" asp-validation-summary="ModelOnly"></div>

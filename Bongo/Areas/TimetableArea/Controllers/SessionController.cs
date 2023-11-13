@@ -45,7 +45,7 @@ namespace Bongo.Areas.TimetableArea.Controllers
                 return View("Groups", new GroupsViewModel { GroupedLectures = GroupedList });
 
             TempData["isForFirstSemester"] = isForFirstSemester;
-            return RedirectToAction("Display", "Home", new { isForFirstSemester = Request.Cookies["isForFirstSemester"] });
+            return RedirectToAction("Display", "Timetable");
         }
         [HttpPost]
         public IActionResult Clashes(string[] Sessions)
@@ -165,7 +165,7 @@ namespace Bongo.Areas.TimetableArea.Controllers
             return RedirectToAction("Manage");
 
         }
-        
+
         public IActionResult ManageModules()
         {
             PopulateColorDLL();
@@ -220,13 +220,6 @@ namespace Bongo.Areas.TimetableArea.Controllers
             Initialise(firstSemester);
             TempData["isForFirstSemester"] = firstSemester;
             return View("Groups", new GroupsViewModel { GroupedLectures = processor.GetGroupedLectures(true, true) });
-        }
-        private IActionResult StartBlank()
-        {
-            Timetable newTimetale = new Timetable { TimetableText = "", Username = User.Identity.Name };
-            _repository.Timetable.Update(newTimetale);
-            _repository.SaveChanges();
-            return RedirectToAction("Manage");
         }
         [HttpPost]
         public IActionResult DeleteSession(string session, bool firstSemester)
@@ -314,7 +307,7 @@ namespace Bongo.Areas.TimetableArea.Controllers
             {
                 AddNewSession(model, true);
                 UpdateAndSave();
-                return RedirectToAction("Index", new { isForFirstSemester = Request.Cookies["isForFirstSemester"] });
+                return RedirectToAction("Manage");
             }
 
             PopulateEndTimeDLL(model.startTime, getAvailablePeriodCount(model.startTime, model.Day));
@@ -327,7 +320,6 @@ namespace Bongo.Areas.TimetableArea.Controllers
             if (session != null)
             {
                 Session _session;
-                bool isB = Request.Cookies["isForFirstSemester"] == "true";
 
                 Initialise(Request.Cookies["isForFirstSemester"] == "true");
                 var arr = data;
@@ -407,29 +399,6 @@ namespace Bongo.Areas.TimetableArea.Controllers
             }
             _repository.SaveChanges();
             return RedirectToAction(activeAction == "EditColors" ? "EditColors" : "ManageModules");
-        }
-
-        [HttpPost]
-        public IActionResult ClearTable(int id)
-        {
-            table = _repository.Timetable.GetUserTimetable(User.Identity.Name);
-            var moduleColor = _repository.ModuleColor.GetByCondition(m => m.Username == User.Identity.Name);
-            if (table != null)
-            {
-                _repository.Timetable.Delete(table);
-
-            }
-            if (moduleColor != null)
-            {
-                foreach (var item in moduleColor)
-                {
-                    _repository.ModuleColor.Delete(item);
-                }
-            }
-            _repository.SaveChanges();
-            if (id == 0)
-                return StartBlank();
-            return RedirectToAction("Upload", "Timetable");
         }
         private void PopulateEndTimeDLL(string startTime, int periodCount)
         {

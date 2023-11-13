@@ -107,7 +107,7 @@
     @if (Model.latestPeriod < 15)
     {
         <div class="addRow">
-            <form asp-controller="Home" asp-action="AddRow" asp-route-latestPeriod="@(++Model.latestPeriod)" method="post">
+            <form asp-controller="Timetable" asp-action="AddRow" asp-route-latestPeriod="@(++Model.latestPeriod)" method="post">
                 <button class="btn btn-outline-primary addRowButton" title="Add Row" type="submit">
                     <i class="fa-solid fa-plus"></i>
                 </button>

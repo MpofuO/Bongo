@@ -8,7 +8,7 @@ namespace Bongo.Areas.TimetableArea.Infrastructure
     {
         static Regex timepattern = new Regex(@"[0-9]{2}:[0-9]{2} [0-9]{2}:[0-9]{2}");
         static Regex daypattern = new Regex(@"Monday|Tuesday|Wednesday|Thursday|Friday");
-        public static void SplitSessions(this Session[,] Sessions)
+        public static Session[,] SplitSessions(this Session[,] Sessions)
         {
             Session[,] _Sessions = Sessions.DeepEmptyCopy();
             foreach (var session in Sessions)
@@ -23,14 +23,14 @@ namespace Bongo.Areas.TimetableArea.Infrastructure
                 }
             }
 
-            Sessions = _Sessions;
+            return _Sessions;
         }
         public static void HandleClashes(Session[,] Sessions, List<List<Session>> clashes)
         {
             foreach (var clash in clashes)
             {
                 string day = daypattern.Match(clash[0].sessionInPDFValue).Value;
-                int minHour = 0, maxHour = 0;
+                int minHour = int.MaxValue, maxHour = int.MinValue;
                 foreach (var session in clash)
                 {
                     int[] hourRange = getHourRange(session.sessionInPDFValue);
@@ -57,12 +57,12 @@ namespace Bongo.Areas.TimetableArea.Infrastructure
 
         private static void SplitRangeHourly(Session[,] Sessions, int minHour, int maxHour, string day)
         {
-            for (int i = minHour; i <= maxHour; i++)
+            for (int i = minHour; i < maxHour; i++)
             {
                 string hour = i < 10 ? $"0{i}" : $"{i}";
 
                 int[] period = Periods.GetPeriod(hour, day);
-                Sessions[period[0], period[1]] = new Session() { Period = period };
+                Sessions[period[0] - 1, period[1] - 1] = new Session() { Period = period };
             }
         }
         public static void HandleGroups(Session[,] Sessions, List<Lecture> groups)
@@ -72,15 +72,15 @@ namespace Bongo.Areas.TimetableArea.Infrastructure
 
         private static Session[,] DeepEmptyCopy(this Session[,] Sessions)
         {
-            int iMax = Sessions.GetLength(0), jMax = Sessions.GetLength(1);
-            Session[,] _Sessions = new Session[iMax, jMax];
-            for (int i = 0; i < iMax; i++)
+            int iLength = Sessions.GetLength(0), jLength = Sessions.GetLength(1);
+            Session[,] _Sessions = new Session[iLength, jLength];
+            for (int i = 0; i < iLength; i++)
             {
-                for (int j = 0; j < jMax; j++)
+                for (int j = 0; j < jLength; j++)
                     if (Sessions[i, j] != null)
                         _Sessions[i, j] = new Session()
                         {
-                            Period = new int[] { i, j }
+                            Period = new int[] { i + 1, j + 1 }
                         };
             }
 
