@@ -8,6 +8,40 @@ namespace Bongo.Areas.TimetableArea.Infrastructure
     {
         static Regex timepattern = new Regex(@"[0-9]{2}:[0-9]{2} [0-9]{2}:[0-9]{2}");
         static Regex daypattern = new Regex(@"Monday|Tuesday|Wednesday|Thursday|Friday");
+
+        public static void Merge(Session[,] Sessions, Session[,] newSessions)
+        {
+            newSessions = newSessions.SplitSessions();
+
+            foreach(var session in newSessions)
+            {
+                if (session == null) continue;
+
+                int i = session.Period[0] - 1, j = session.Period[1] - 1;
+
+                if (Sessions[i, j] != null)
+                    Sessions[i, j].userCount++;
+                else
+                    Sessions[i, j] = session;
+            }
+        }
+
+        public static void UnMerge(Session[,] Sessions, Session[,] removedSessions)
+        {
+            removedSessions = removedSessions.SplitSessions();
+
+            foreach (var session in removedSessions)
+            {
+                if (session == null) continue;
+
+                int i = session.Period[0] - 1, j = session.Period[1] - 1;
+
+                if (Sessions[i, j] != null && Sessions[i, j].userCount>1)
+                    Sessions[i,j].userCount--;
+                else
+                    Sessions[i, j] = null;
+            }
+        }
         public static Session[,] SplitSessions(this Session[,] Sessions)
         {
             Session[,] _Sessions = Sessions.DeepEmptyCopy();
@@ -25,26 +59,7 @@ namespace Bongo.Areas.TimetableArea.Infrastructure
 
             return _Sessions;
         }
-        public static void HandleClashes(Session[,] Sessions, List<List<Session>> clashes)
-        {
-            foreach (var clash in clashes)
-            {
-                string day = daypattern.Match(clash[0].sessionInPDFValue).Value;
-                int minHour = int.MaxValue, maxHour = int.MinValue;
-                foreach (var session in clash)
-                {
-                    int[] hourRange = getHourRange(session.sessionInPDFValue);
-
-                    if (hourRange[0] < minHour)
-                        minHour = hourRange[0];
-                    if (hourRange[1] > maxHour)
-                        maxHour = hourRange[1];
-                }
-
-                SplitRangeHourly(Sessions, minHour, maxHour, day);
-
-            }
-        }
+        
         private static int[] getHourRange(string sessionInPDFValue)
         {
             Match timeMatch = timepattern.Match(sessionInPDFValue);
@@ -64,10 +79,6 @@ namespace Bongo.Areas.TimetableArea.Infrastructure
                 int[] period = Periods.GetPeriod(hour, day);
                 Sessions[period[0] - 1, period[1] - 1] = new Session() { Period = period };
             }
-        }
-        public static void HandleGroups(Session[,] Sessions, List<Lecture> groups)
-        {
-
         }
 
         private static Session[,] DeepEmptyCopy(this Session[,] Sessions)

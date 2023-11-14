@@ -20,7 +20,7 @@ namespace Bongo.Areas.TimetableArea.Controllers
         private static List<List<Session>> clashes;
         private static List<Lecture> groups;
         private static List<string> mergedUsers;
-        private static string mergedText;
+        private static Session[,] mergedSessions;
         public MergerController(IRepositoryWrapper _repository, UserManager<BongoUser> _userManager)
         {
             repository = _repository;
@@ -30,7 +30,6 @@ namespace Bongo.Areas.TimetableArea.Controllers
         {
             _isForFirstSemester = isForFirstSemester;
             mergedUsers = new List<string>();
-            mergedText = "";
             return RedirectToAction("ReviewCurrentUser");
         }
         public IActionResult ReviewCurrentUser()
@@ -44,21 +43,12 @@ namespace Bongo.Areas.TimetableArea.Controllers
         }
         public IActionResult Index()
         {
-            processor = new TimetableProcessor(mergedText, _isForFirstSemester);
-            Session[,] Sessions = processor.GetSessionsArray(out clashes, out groups);
-            Sessions = Sessions.SplitSessions();
-
-            if (clashes.Count > 0)
-                MergerControlHelpers.HandleClashes(Sessions, clashes);
-            if (groups.Count > 0)
-                MergerControlHelpers.HandleGroups(Sessions, groups);
-
             List<string> users = userManager.Users.Select(u => u.UserName).ToList();
             users.Remove(User.Identity.Name);
 
             return View(new MergerIndexViewModel
             {
-                Sessions = Sessions,
+                Sessions = mergedSessions,
                 MergedUsers = mergedUsers,
                 Users = users
             });
@@ -79,26 +69,31 @@ namespace Bongo.Areas.TimetableArea.Controllers
                         TempData["Message"] = $"Please note {username}'s timetable is empty. It has no classes, practicals or tutorials.";
                         goto AddUser;
                     }
+
                     processor = new TimetableProcessor(timetable.TimetableText, _isForFirstSemester);
-                    processor.GetSessionsArray(out clashes, out groups);
+                    Session[,] newUserSessions = processor.GetSessionsArray(out clashes, out groups);
 
                     if (clashes.Count > 0 || groups.Count > 0)
                     {
                         if (username == User.Identity.Name)
                         {
                             TempData["Message"] = "Please ensure that you have managed your clashes and/groups before merging with others.";
-                            return RedirectToAction("Upload", "Timetable");
+                            return RedirectToAction("Manage", "Session");
                         }
                         else
                         {
                             TempData["Message"] = $"Could not merge with {username}'s timetable.\n" +
                                 $"Please ensure that {username} has managed their clashes and/groups before merging with them.";
-                            return RedirectToAction("Upload", "Timetable");
+                            return RedirectToAction("Index");
                         }
                     }
-                AddUser:
+                    if (mergedUsers.Count == 0)
+                        mergedSessions = newUserSessions.SplitSessions();
+                    else
+                        MergerControlHelpers.Merge(mergedSessions, newUserSessions);
+
+                    AddUser:
                     mergedUsers.Add(username);
-                    mergedText += timetable.TimetableText;
                     return RedirectToAction("Index");
                 }
 
@@ -110,10 +105,16 @@ namespace Bongo.Areas.TimetableArea.Controllers
         }
         public IActionResult RemoveUserTimetable(string username)
         {
-            var timetable = repository.Timetable.GetUserTimetable(username);
-            if (timetable.TimetableText != "")
-                mergedText = mergedText.Replace(timetable.TimetableText, "");
-            mergedUsers.Remove(username);
+            if (mergedUsers.Contains(username))
+            {
+                var timetable = repository.Timetable.GetUserTimetable(username);
+                if (timetable.TimetableText != "")
+                {
+                    processor = new TimetableProcessor(timetable.TimetableText, _isForFirstSemester);
+                    MergerControlHelpers.UnMerge(mergedSessions, processor.GetSessionsArray(out clashes, out groups));
+                }
+                mergedUsers.Remove(username);
+            }
             return RedirectToAction("Index");
         }
     }

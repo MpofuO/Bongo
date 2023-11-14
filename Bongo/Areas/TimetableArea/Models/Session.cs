@@ -18,5 +18,8 @@ namespace Bongo.Areas.TimetableArea.Models
         {
             get { return sessionType.ToString() + "\n" + ModuleCode + "\n" + Venue; }
         }
+
+        //Used only for when we are merging timetables
+        public int userCount { get; set; } = 1;
     }
 }
