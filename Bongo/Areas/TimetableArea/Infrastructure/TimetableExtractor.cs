@@ -31,7 +31,7 @@ namespace Bongo.Areas.TimetableArea.Infrastructure
             ExtractSessions();
 
             lectures = Lectures;
-            moduleCodes = new List<string>(modulesData.Select(md => md.ModuleCode));
+            moduleCodes = modulesData.Select(m => m.ModuleCode).ToList();
             return lstSessions;
         }
         private static void ReadTextToList(string text)

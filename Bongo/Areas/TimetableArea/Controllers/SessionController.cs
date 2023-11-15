@@ -98,7 +98,16 @@ namespace Bongo.Areas.TimetableArea.Controllers
         {
             List<Lecture> grouped = processor.GetGroupedLectures();
             List<string> sessions = new List<string>(model.Sessions);
-            string[] strings = SessionControlHelpers.GetClashing(model.Sessions);
+
+            RemoveSelectedWhereNecessary("ignored", grouped);
+            if (model.Ignore != null)
+                foreach (string s in model.Ignore)
+                {
+                    table.TimetableText = table.TimetableText.Replace(s, s + "ignored");
+                    sessions.Remove(s);
+                }
+
+            string[] strings = SessionControlHelpers.GetClashing(sessions.ToArray());
             if (strings.Count() > 0)
             {
                 foreach (string item in strings)
@@ -112,7 +121,6 @@ namespace Bongo.Areas.TimetableArea.Controllers
 
             if (strings.Length > 0)
             {
-
                 foreach (var session in strings)
                 {
                     foreach (var lect in grouped)
@@ -129,14 +137,6 @@ namespace Bongo.Areas.TimetableArea.Controllers
             }
 
             RemoveSelectedWhereNecessary("group", unclashing);
-            RemoveSelectedWhereNecessary("ignored", unclashing);
-
-            if (model.Ignore != null)
-                foreach (string s in model.Ignore)
-                {
-                    table.TimetableText = table.TimetableText.Replace(s, s + "ignored");
-                    sessions.Remove(s);
-                }
 
             foreach (string session in sessions)
             {
@@ -158,7 +158,7 @@ namespace Bongo.Areas.TimetableArea.Controllers
             UpdateAndSave();
             if (strings.Length > 0)
             {
-                ModelState.AddModelError("", "You have selected clashing sessions. Please ensure you don't select sessions that are clashing.");
+                ModelState.AddModelError("", "You have selected clashing sessions. Please ensure you don't select sessions that are clashing with each other or with sessions that are already there.");
                 return View(new GroupsViewModel { GroupedLectures = clashing });
             }
 

@@ -10,14 +10,14 @@ namespace Bongo.Areas.TimetableArea.Infrastructure
         private static List<Session> lstCleanSessions;
         public static List<Lecture> Lectures;
         private static List<Lecture> groupedLectures;
-        private static List<string> ModuleCodes;//for Control
+        private static List<string> moduleCodes;
 
         public TimetableProcessor(string text, bool isForFirstSemester)
         {
             timetableArray = new Session[5, 16];
             groupedLectures = new List<Lecture>();
             TimetableExtractor extractor = new TimetableExtractor();
-            lstSessions = extractor.ExtractSessions(text, out Lectures, out ModuleCodes);
+            lstSessions = extractor.ExtractSessions(text, out Lectures, out moduleCodes);
             FilterBySemester(isForFirstSemester);
         }
 

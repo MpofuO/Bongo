@@ -190,7 +190,7 @@ option[disabled] {
 
 
 .session-prep-buttons {
-    justify-self:end;
+    justify-self: end;
     position: sticky;
     bottom: 0;
     right: 0;
@@ -362,11 +362,36 @@ option[disabled] {
         background-color: lightgrey;
     }
 
-a#remove{
-    border-radius:8px;
+a#remove {
+    border-radius: 8px;
     padding: 0px 7px;
 }
 
-a#remove:hover {
-    background-color:gainsboro;
+    a#remove:hover {
+        background-color: gainsboro;
+    }
+
+div.chooseSemester {
+    padding:10px;
+    align-self:center;
+    position:absolute;
+    top:80px;
+    left:50%;
+    border-radius:20px;
 }
+
+a.chooseSemester {
+    background-color:gainsboro;
+    color:blue;
+    padding:5px 8px;
+    text-decoration:none;
+    border:1px solid blue;
+    border-radius:25px;
+    transition:all ease-in 0.15s;
+}
+
+    a.chooseSemester:hover {
+        background-color: blue;
+        color: gainsboro;
+        border: 1px solid gainsboro;
+    }

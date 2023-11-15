@@ -1,0 +1,15 @@
+﻿@{
+    ViewData["Title"] = "Select Semester";
+}
+
+<div class="chooseSemester position-relative shadow mt-3">
+    <h5 style="align-self:center;">Which semester would you like to merge timetables for?</h5>
+    <div class="d-flex justify-content-center mt-3">
+        <a class="chooseSemester m-2" asp-action="SetSemester" asp-route-isForFirstSemester="true">
+            Semester 1
+        </a>
+        <a class="chooseSemester m-2" asp-action ="SetSemester" asp-route-isForFirstSemester="false">
+            Semester 2
+        </a>
+    </div>
+</div>

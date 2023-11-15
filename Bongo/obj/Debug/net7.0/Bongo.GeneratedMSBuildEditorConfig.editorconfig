@@ -24,6 +24,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcVGltZXRhYmxlQXJlYVxWaWV3c1xMYW5kaW5nUGFnZVxNZXJnZVRpbWV0YWJsZXMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/20208/Desktop/New folder/Bongo4Students/Bongo/Areas/TimetableArea/Views/Merger/ChooseSemester.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcVGltZXRhYmxlQXJlYVxWaWV3c1xNZXJnZXJcQ2hvb3NlU2VtZXN0ZXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/20208/Desktop/New folder/Bongo4Students/Bongo/Areas/TimetableArea/Views/Merger/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcVGltZXRhYmxlQXJlYVxWaWV3c1xNZXJnZXJcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
@@ -50,10 +54,6 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/20208/Desktop/New folder/Bongo4Students/Bongo/Areas/TimetableArea/Views/Session/SessionDetails.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcVGltZXRhYmxlQXJlYVxWaWV3c1xTZXNzaW9uXFNlc3Npb25EZXRhaWxzLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/20208/Desktop/New folder/Bongo4Students/Bongo/Areas/TimetableArea/Views/Shared/_EditSessionModal.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXNcVGltZXRhYmxlQXJlYVxWaWV3c1xTaGFyZWRcX0VkaXRTZXNzaW9uTW9kYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/20208/Desktop/New folder/Bongo4Students/Bongo/Areas/TimetableArea/Views/Shared/_TimetableAreaLayout.cshtml]

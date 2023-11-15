@@ -2,10 +2,10 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Bongo.Areas.TimetableArea.Controllers
+namespace Bongo.Areas.TutoringArea.Controllers
 {
     [AllowAnonymous]
-    [Area("TimetableArea")]
+    [Area("TutoringArea")]
     public class HowItWorksController : Controller
     {
         private readonly IRepositoryWrapper _repo;
@@ -14,11 +14,11 @@ namespace Bongo.Areas.TimetableArea.Controllers
         {
             _repo = repo; 
         }
-        public IActionResult CreateTimetable()
+        public IActionResult FindTutor()
         {
             return View();
         }
-        public IActionResult MergeTimetables()
+        public IActionResult BeTutor()
         {
             return View();
         }

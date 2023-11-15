@@ -1,4 +1,5 @@
-﻿using System.Linq.Expressions;
+﻿using Bongo.Areas.TimetableArea.Models;
+using System.Linq.Expressions;
 
 namespace Bongo.Data
 {

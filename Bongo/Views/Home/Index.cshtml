@@ -2,21 +2,31 @@
     <div class="half-menu">
         <div class="m-1 menu-card">
             <a asp-area="TimetableArea" asp-controller="Timetable" asp-action="Upload"
-                title="Create timetable" class="">
+               title="Create timetable" class="">
                 <div>
                     <div class="icon">
                         <i class="fa-solid fa-table text-warning"></i>
                     </div>
-                    <h4>Create timetable</h4>
-                    <div class="">
-                        <p>Easily create your timetable from your UFS personal timetable or from scratch.</p>
-                    </div>
+                    @if (TempData["HasTimetable"].ToString().ToLower() == "true")
+                    {
+                        <h4>View timetable</h4>
+                        <div class="">
+                            <p>View, manage, or download  your timetable. Add or remove sessions, manage groups and clashes.</p>
+                        </div>
+                    }
+                    else
+                    {
+                        <h4>Create timetable</h4>
+                        <div class="">
+                            <p>Easily create your timetable from your UFS personal timetable or from scratch.</p>
+                        </div>
+                    }
                 </div>
             </a>
         </div>
         <div class="m-1 menu-card">
-            <a asp-area="TimetableArea" asp-controller="Merger" asp-action="SetSemester"
-               asp-route-isForFirstSemester="false" title="Merge timetables" class="">
+            <a asp-area="TimetableArea" asp-controller="Merger" asp-action="ChooseSemester"
+               title="Merge timetables" class="">
                 <div>
                     <div class="icon">
                         <i class="fa-solid fa-object-ungroup text-danger"></i>
@@ -58,3 +68,41 @@
         </div>
     </div>
 </div>
+
+@if (Context.Request.Cookies["Notified"] == "false")
+{
+    <!-- Modal -->
+    <div class="modal fade " id="noticeModal" tabindex="-1" aria-labelledby="termsModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title text-center" id="staticBackdropLabel">Important Notice</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body terms-modal">
+                    <p>
+                        Dear @User.Identity.Name😊,
+                    </p>
+
+                    <p>We would like to express our heartfelt gratitude for choosing Bongo for your needs. We strive to provide the best experience and service to our users.</p>
+
+                    <p>
+                        Currently, we are making some important updates to improve our services. During this period, you may encounter certain features that are temporarily unavailable. We also recommend that you use desktop (laptop) for better exeperience. We sincerely apologize for any inconvenience this may cause.
+                    </p>
+                    <p>
+                        If you encounter any issues or have any questions, please do not hesitate to contact our support team. We are here to assist you and ensure that your experience with Bongo is as seamless as possible.
+                    </p>
+                    <p>Thank you for your understanding and continued support.<br /></p>
+
+                    <p> Best regards,<br />The Bongo Team</p>
+
+                </div>
+                <div class="modal-footer">
+                    <form asp-controller="Home" asp-action="Notice" method="post">
+                        <button type="submit" class="btn btn-secondary" data-bs-dismiss="modal">Continue</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+}

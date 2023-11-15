@@ -1,5 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Bongo.Areas.TimetableArea.Models;
+﻿using Bongo.Areas.TimetableArea.Models;
+using Microsoft.EntityFrameworkCore;
+
 namespace Bongo.Data
 {
     public class SeedData
@@ -14,8 +15,6 @@ namespace Bongo.Data
         {
             AppDbContext context = app.ApplicationServices
                 .CreateScope().ServiceProvider.GetRequiredService<AppDbContext>();
-
-            
 
             if (context.Database.GetPendingMigrations().Any())
             {

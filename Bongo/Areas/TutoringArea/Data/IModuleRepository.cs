@@ -1,6 +1,6 @@
-﻿using Bongo.Areas.Tutoring.Models;
+﻿using Bongo.Areas.TutoringArea.Models;
 
-namespace Bongo.Areas.Tutoring.Data
+namespace Bongo.Areas.TutoringArea.Data
 {
     public interface IModuleRepository
     {

@@ -1,5 +1,4 @@
 ﻿using Bongo.Areas.TimetableArea.Models;
-using Microsoft.EntityFrameworkCore.Metadata;
 using System.Text.RegularExpressions;
 
 namespace Bongo.Areas.TimetableArea.Infrastructure

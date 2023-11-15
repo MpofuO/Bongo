@@ -26,6 +26,10 @@ namespace Bongo.Areas.TimetableArea.Controllers
             repository = _repository;
             userManager = _userManager;
         }
+        public IActionResult ChooseSemester()
+        {
+            return View();
+        }
         public IActionResult SetSemester(bool isForFirstSemester)
         {
             _isForFirstSemester = isForFirstSemester;
@@ -78,12 +82,15 @@ namespace Bongo.Areas.TimetableArea.Controllers
                         if (username == User.Identity.Name)
                         {
                             TempData["Message"] = "Please ensure that you have managed your clashes and/groups before merging with others.";
+
+                            CookieOptions cookieOptions = new CookieOptions { Expires = DateTime.Now.AddDays(90) };
+                            Response.Cookies.Append("isForFirstSemester",_isForFirstSemester.ToString(),cookieOptions);
                             return RedirectToAction("Manage", "Session");
                         }
                         else
                         {
                             TempData["Message"] = $"Could not merge with {username}'s timetable.\n" +
-                                $"Please ensure that {username} has managed their clashes and/groups before merging with them.";
+                                $"Please ensure that {username} has managed their clashes and/or groups before merging with them.";
                             return RedirectToAction("Index");
                         }
                     }

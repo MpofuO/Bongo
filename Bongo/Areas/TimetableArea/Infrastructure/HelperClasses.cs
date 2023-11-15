@@ -1,4 +1,6 @@
 ﻿using Bongo.Areas.TimetableArea.Models;
+using Bongo.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace Bongo.Areas.TimetableArea.Infrastructure
 {

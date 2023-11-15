@@ -440,18 +440,6 @@ namespace Bongo.Areas.TimetableArea.Controllers
         }
 
         [AllowAnonymous]
-        [HttpPost]
-        public async Task<IActionResult> Notice()
-        {
-            var user = await _userManager.FindByNameAsync(User.Identity.Name);
-            user.Notified = true;
-            await _userManager.UpdateAsync(user);
-            Response.Cookies.Append("Notified", user.Notified.ToString().ToLower(),
-                            new CookieOptions { Expires = DateTime.Now.AddDays(90) }
-                            );
-            return RedirectToAction("Display");
-        }
-
         [HttpGet]
         public IActionResult Error()
         {
