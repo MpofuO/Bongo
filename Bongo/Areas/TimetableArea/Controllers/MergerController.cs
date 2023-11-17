@@ -47,7 +47,10 @@ namespace Bongo.Areas.TimetableArea.Controllers
         }
         public IActionResult Index()
         {
-            List<string> users = userManager.Users.Select(u => u.UserName).ToList();
+            var usersKeyValuePairs = (IEnumerable<KeyValuePair<string, string>>)userManager.Users
+                .Select(user => new KeyValuePair<string, string>(user.UserName, user.MergeKey));
+
+            var users = new Dictionary<string, string>(usersKeyValuePairs);
             users.Remove(User.Identity.Name);
 
             return View(new MergerIndexViewModel
@@ -84,7 +87,7 @@ namespace Bongo.Areas.TimetableArea.Controllers
                             TempData["Message"] = "Please ensure that you have managed your clashes and/groups before merging with others.";
 
                             CookieOptions cookieOptions = new CookieOptions { Expires = DateTime.Now.AddDays(90) };
-                            Response.Cookies.Append("isForFirstSemester",_isForFirstSemester.ToString(),cookieOptions);
+                            Response.Cookies.Append("isForFirstSemester", _isForFirstSemester.ToString(), cookieOptions);
                             return RedirectToAction("Manage", "Session");
                         }
                         else

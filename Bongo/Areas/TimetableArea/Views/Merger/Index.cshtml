@@ -4,79 +4,96 @@
 @if (TempData["Message"] != null)
 {
     <div class="alert alert-warning alert-dismissible fade show alert-table" role="alert">
-        <i class="fa-solid fa-info"></i>
+        <i class="fa-solid fa-check"></i>
         @TempData["Message"]
     </div>
 }
-<div class="d-flex justify-content-center text-warning my-2">
-    Note: Blacked-out areas show times when someone is not available
-</div>
-<div class="d-flex">
-    <div class="d-flex flex-column bg-light rounded-4 shadow me-3 p-1" style="height:fit-content;width:200px;">
-        <input type="text" id="search" class="form-control my-2" placeholder="Search for users..." oninput="searchUsers()" />
-        <ul id="userList" class="d-none">
-            @foreach (var item in Model.Users)
-            {
-                <li>@item</li>
-            }
-        </ul>
-        <ul id="searchedUsers" class="p-0" hidden>
-        </ul>
-        <div id="mergedUserList">
-            <h6>Users merged: </h6>
-            <hr style="margin:5px 0" />
-            <ul class="p-0">
-                <li style="list-style:none;">
-                    <div>@Model.MergedUsers[0] (You)</div>
-                </li>
-                @foreach (string user in Model.MergedUsers.Skip(1))
+<div id="merge-main">
+    <div class="d-flex justify-content-center text-warning my-2">
+        Note: Blacked-out areas show times when someone is not available
+    </div>
+    <div class="d-flex">
+        <div class="d-flex flex-column bg-light rounded-4 shadow me-3 p-1" style="height:fit-content;width:200px;">
+            <input type="text" id="search" class="form-control my-2" placeholder="Search for users..." onfocus="enterKeyBlur()" oninput="searchUsers()" />
+            <ul id="userList" class="d-none">
+                @foreach (var item in Model.Users.Keys)
                 {
-                    <li class="d-flex justify-content-between">
-                        <div>@user</div>
-                        <a title="Remove @user" asp-action="RemoveUserTimetable" asp-route-username="@user" class="me-1">
-                            <i class="fa-solid fa-minus text-danger"></i>
-                        </a>
-                    </li>
+                    <li>@item</li>
                 }
             </ul>
-        </div>
-    </div>
-    <div class="main-table">
-        <table class="table table-striped shadow rounded-4" style="width:700px" id="timeTable">
-            <thead class="table-head table-active">
-                <tr class="text-center text-primary">
-                    <th class="">Time</th>
-                    <th class="">Monday</th>
-                    <th class="">Tuesday</th>
-                    <th class="">Wednesday</th>
-                    <th class="">Thursday</th>
-                    <th class="">Friday</th>
-                </tr>
-            </thead>
-            <tbody>
-                @for (  int i = 0; i < Model.latestPeriod; i++)
+            <ul class="d-none">
+                @foreach (var item in Model.Users)
                 {
-                    <tr>
-                        <td class="text-center table-active text-primary fw-bold border-bottom align-middle"
-                            style="font-size: 15px; padding:0 !important; width:90px !important;">
-                            @{
-                                string starthourtime = ((i + 7) > 9 ? (i + 7).ToString() : "0" + (i + 7).ToString());
-                                string endhourtime = ((i + 8) > 9 ? (i + 8).ToString() : "0" + (i + 8).ToString());
-                                starthourtime += $":00-{endhourtime}:00";
-                                //starthourtime += timeSingle ? $"-{endhourtime}:00" : "";
-                            }
-                            @starthourtime
-                        </td>
-                        @for (int j = 0; j < 5; j++)
-                        {
-                            Session session = Model.Sessions[j, i];
-                            <td class="table-cell @(session !=null?"bg-dark border border-white border-top-0 border-bottom-0":"bg-light")">
-                            </td>
-                        }
-                    </tr>
+                    <li id="@item.Key">@item.Value</li>
                 }
-            </tbody>
-        </table>
-    </div>
+            </ul>
+            <ul id="searchedUsers" class="p-0" hidden>
+            </ul>
+            <div id="mergedUserList">
+                <h6>Users merged: </h6>
+                <hr style="margin:5px 0" />
+                <ul class="p-0">
+                    <li style="list-style:none;">
+                        <div>@Model.MergedUsers[0] (You)</div>
+                    </li>
+                    @foreach (string user in Model.MergedUsers.Skip(1))
+                    {
+                        <li class="d-flex justify-content-between">
+                            <div>@user</div>
+                            <a title="Remove @user" asp-action="RemoveUserTimetable" asp-route-username="@user" class="me-1">
+                                <i class="fa-solid fa-minus text-danger"></i>
+                            </a>
+                        </li>
+                    }
+                </ul>
+            </div>
+        </div>
+        <div class="main-table">
+            <table class="table table-striped shadow rounded-4" style="width:700px" id="timeTable">
+                <thead class="table-head table-active">
+                    <tr class="text-center text-primary">
+                        <th class="">Time</th>
+                        <th class="">Monday</th>
+                        <th class="">Tuesday</th>
+                        <th class="">Wednesday</th>
+                        <th class="">Thursday</th>
+                        <th class="">Friday</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (int i = 0; i < Model.latestPeriod; i++)
+                    {
+                        <tr>
+                            <td class="text-center table-active text-primary fw-bold border-bottom align-middle"
+                                style="font-size: 15px; padding:0 !important; width:90px !important;">
+                                @{
+                                    string starthourtime = ((i + 7) > 9 ? (i + 7).ToString() : "0" + (i + 7).ToString());
+                                    string endhourtime = ((i + 8) > 9 ? (i + 8).ToString() : "0" + (i + 8).ToString());
+                                    starthourtime += $":00-{endhourtime}:00";
+                                    //starthourtime += timeSingle ? $"-{endhourtime}:00" : "";
+                                }
+                                @starthourtime
+                            </td>
+                            @for (int j = 0; j < 5; j++)
+                            {
+                                Session session = Model.Sessions[j, i];
+                                <td class="table-cell @(session !=null?"bg-dark border border-white border-top-0 border-bottom-0":"bg-light")">
+                                </td>
+                            }
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
 
+    </div>
+</div>
+<div id="enterKey" class="position-absolute d-grid bg-white shadow p-2" >
+    <h5 id="mergingWith"></h5>
+    <div id="warning" class="text-danger mt-2" style="justify-self:center;" hidden>Key does not match</div>
+    <input id="key" class="form-control mt-2" placeholder="Enter key" style="width:80%;justify-self:center;" oninput="TestKey()"/>
+    <div class="d-flex mt-3 justify-content-center">
+        <a id="submit" class="btn disabled">Submit</a>
+        <button class="btn btn-outline-primary mx-2" onclick="enterKeyBlur()" >Cancel</button>
+    </div>
 </div>

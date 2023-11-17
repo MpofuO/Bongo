@@ -2,7 +2,7 @@
 {
     public class MergerIndexViewModel
     {
-        public List<string> Users { get; set; }
+        public Dictionary<string,string> Users { get; set; }
         public List<string> MergedUsers { get; set; }
         public Session[,] Sessions { get; set; }
         public int latestPeriod

@@ -104,9 +104,10 @@ function searchUsers() {
                 var li = document.createElement('li');
                 li.className = 'search-li';
                 var a = document.createElement('a');
-                a.href = 'AddUserTimetable?username=' + item.textContent;
+                a.href = 'javascript:requestKey("'+item.textContent+'")';
                 a.className = 'btn w-100 d-flex justtify-content-start';
                 a.style.zIndex = 2;
+                a.onfocus = enterKeyBlur();
 
                 var text = document.createTextNode(item.textContent);
 
@@ -118,6 +119,55 @@ function searchUsers() {
 
         searchedUsersList.hidden = false;
     }
+}
+
+var mergingWith;
+var expectedKeyValue;
+
+function requestKey(user) {
+    var mergeMain = document.getElementById('merge-main');
+    var enterKey = document.getElementById('enterKey');
+    var instruction = document.getElementById('mergingWith');
+    var Key = document.getElementById(user);
+    var keyInput = document.getElementById('key');
+
+    instruction.textContent = 'Please enter the key to merge with ' + user;
+    mergingWith = user;
+    expectedKeyValue = Key.textContent;
+    mergeMain.style.opacity = 0.2;
+    enterKey.style.zIndex = 2;
+    enterKey.style.opacity = 1;
+
+    keyInput.focus();
+}
+
+function enterKeyBlur() {
+    var mergeMain = document.getElementById('merge-main');
+    var enterKey = document.getElementById('enterKey');
+    var key = document.getElementById('key');
+    if (enterKey.style.zIndex > 0) {
+        key.value = '';
+        mergeMain.style.opacity = 1;
+        enterKey.style.zIndex = -1;
+        enterKey.style.opacity = 0;
+    }
+}
+
+function TestKey() {
+    var key = document.getElementById('key');
+    var warningDiv = document.getElementById('warning');
+    var submit = document.getElementById('submit');
+
+    if (key.value == expectedKeyValue) {
+        submit.className = 'btn btn-success mx-2'
+        warningDiv.hidden = true;
+        submit.href = 'AddUserTimetable?username=' + mergingWith;
+    }
+    else {
+        submit.className = 'btn disabled';
+        warningDiv.hidden = false;
+    }
+
 }
 
 

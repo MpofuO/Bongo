@@ -395,3 +395,16 @@ a.chooseSemester {
         color: gainsboro;
         border: 1px solid gainsboro;
     }
+
+    #merge-main{
+    }
+
+    #enterKey{
+        left:40%;
+        top:10%;
+        z-index:-1;
+        opacity:0;
+        background-color:whitesmoke !important;
+        border-radius:10px;
+        transition:opacity ease-in 0.2s;
+    }

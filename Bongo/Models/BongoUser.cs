@@ -7,5 +7,6 @@ namespace Bongo.Models
         public string SecurityQuestion { get; set; }
         public string SecurityAnswer { get; set; }
         public bool Notified { get; set; }
+        public string MergeKey => "Bongo";
     }
 }
