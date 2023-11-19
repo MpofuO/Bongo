@@ -36,5 +36,11 @@ namespace Bongo.Controllers
                             );
             return RedirectToAction("Index");
         }
+        [Authorize]
+        public async Task<IActionResult> Profile()
+        {
+            var user = await _userManager.FindByNameAsync(User.Identity.Name);
+            return View(user);
+        }
     }
 }

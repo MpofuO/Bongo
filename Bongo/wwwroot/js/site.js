@@ -104,7 +104,7 @@ function searchUsers() {
                 var li = document.createElement('li');
                 li.className = 'search-li';
                 var a = document.createElement('a');
-                a.href = 'javascript:requestKey("'+item.textContent+'")';
+                a.href = 'javascript:requestKey("' + item.textContent + '")';
                 a.className = 'btn w-100 d-flex justtify-content-start';
                 a.style.zIndex = 2;
                 a.onfocus = enterKeyBlur();
@@ -170,6 +170,32 @@ function TestKey() {
 
 }
 
+
+
+var openDiv;
+
+function update(id) {
+    var div = document.getElementById(id);
+
+    if (openDiv != null) {
+        var toClose = document.getElementById(openDiv);
+        toClose.hidden = true;
+    }
+
+    div.hidden = false;
+    var forms = div.getElementsByTagName('form')
+    var inputs = forms[0].getElementsByTagName('input');
+    inputs[0].focus();
+    openDiv = id;
+}
+
+function closeDiv(id) {
+    var div = document.getElementById(id);
+    var forms = div.getElementsByTagName('form')
+    var inputs = forms[0].getElementsByTagName('input');
+    inputs[0].value = '';
+    div.hidden = true;
+}
 
 
 

@@ -16,7 +16,7 @@
     <meta name="robots" content="index, follow">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    <link rel="stylesheet" asp-href-include="/css/site.css" />
+    <link rel="stylesheet" asp-href-include="/css/mainStyles.css" />
     <link rel="stylesheet" asp-href-include="/lib/font-awesome/css/all.min.css" />
     <link rel="stylesheet" asp-href-include="/lib/bootstrap/css/bootstrap.css" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
@@ -40,7 +40,7 @@
 <body>
     <header class="container-fluid">
         <nav class="navbar navbar-expand-sm navbar-light shadow">
-            <a class="navbar-brand logo fs-1" href="#">Bongo</a>
+            <a class="navbar-brand logo fs-1" asp-action="Index" asp-controller="Home">Bongo</a>
             <button class="navbar-toggler d-lg-none"
                     type="button"
                     data-bs-toggle="collapse"
@@ -52,10 +52,16 @@
             </button>
             <div class="collapse navbar-collapse" id="collapsibleNavId">
                 <ul class="navbar-nav ms-auto me-3 mt-2 mt-lg-1">
-                    @if (activeController != "Home" && activeAction != "Index")
+                    @if (activeController != "Home" || (activeController == "Home" && activeAction != "Index"))
                     {
                         <li class="nav-item">
-                            <a href="#how-it-works-section" class="nav-link me-1">HOME</a>
+                            <a asp-action="Index" asp-controller="Home" class="nav-link me-1">HOME</a>
+                        </li>
+                    }
+                    @if (User.Identity.IsAuthenticated && activeController == "Home" && activeAction != "Profile")
+                    {
+                        <li class="nav-item">
+                            <a asp-action="Profile" class="nav-link me-1">MY PROFILE</a>
                         </li>
                     }
                     <li class="nav-item">

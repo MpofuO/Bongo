@@ -31,6 +31,7 @@ body {
 
 main {
     height: 100vh;
+    display:grid;
 }
 
 .home-menu {
@@ -109,8 +110,6 @@ main {
 .register-form {
     width: 400px;
 }
-
-
 
 /*.break-section {
     position: absolute;
@@ -300,3 +299,15 @@ footer {
     }
 }*/
 
+
+.profile-part h5 {
+    margin:0;
+}
+.profile-part div, .profile-part div div {
+    display: flex;
+    align-content: center;
+    flex-wrap:wrap;
+}
+.profile-part div form {
+    display: flex;
+}

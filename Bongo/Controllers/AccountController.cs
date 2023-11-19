@@ -187,7 +187,6 @@ namespace Bongo.Controllers
             return View(new ForgotPassword { Username = username });
         }
 
-
         [HttpPost]
         [AllowAnonymous]
         public async Task<IActionResult> ForgotPassword(AnswerSecurityQuestionViewModel model)
@@ -199,8 +198,7 @@ namespace Bongo.Controllers
                 {
                     if (user.SecurityAnswer.ToLower().Trim() == model.SecurityAnswer.ToLower().Trim())
                     {
-                        var token = await _userManager.GeneratePasswordResetTokenAsync(user);
-                        return RedirectToAction("ResetPassword", new { userId = user.Id, token = token });
+                        return await ChangePassword(user.Id);
                     }
                     ModelState.AddModelError("", $"Incorrect answer. Please try again.");
                     return View("AskSecurityQuestion", model);
@@ -210,6 +208,18 @@ namespace Bongo.Controllers
             }
             ModelState.AddModelError("", $"Something went wrong with username {model.Username}. Please try again, if the problem persists contact us.");
             return View(new { username = model.Username });
+        }
+
+        [AllowAnonymous]
+        public async Task<IActionResult> ChangePassword(string userId)
+        {
+            var user = await _userManager.FindByIdAsync(userId);
+            if (user != null)
+            {
+                var token = await _userManager.GeneratePasswordResetTokenAsync(user);
+                return RedirectToAction("ResetPassword", new { userId, token = token });
+            }
+            return RedirectToAction("Index", "Home");
         }
 
         [HttpGet]
@@ -262,6 +272,10 @@ namespace Bongo.Controllers
                 if (fromRegister)
                 {
                     return RedirectToAction("SignIn", "Account");
+                }
+                else if (model.SendingAction == "Profile")
+                {
+                    return RedirectToAction("Profile", "Home");
                 }
                 return RedirectToAction("Index", "Home");
             }

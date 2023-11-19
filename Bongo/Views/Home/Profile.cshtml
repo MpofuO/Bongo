@@ -1,0 +1,69 @@
+﻿@model BongoUser
+
+@{
+    ViewData["Title"] = "Profile";
+}
+
+<div class="account-forms mt-4 p-3 shadow" style="width:330px;justify-self:center; height:fit-content;">
+    <div class="profile-part">
+        <h5>Username:</h5>
+        <div class="mb-1 ms-2">
+            <div>@Model.UserName</div>
+            <button onclick="update('changeUsername')" class="btn ms-1">
+                <i class="fa-solid text-warning fa-pen-to-square"></i>
+            </button>
+        </div>
+        <div id="changeUsername" hidden>
+            <form asp-action="UpdateProfile" asp-route-id="username">
+                <input name="newValue" class="form-control me-2" required placeholder="Enter new username" />
+                <button type="submit" class="btn btn-outline-success me-1">Save</button>
+                <button title="cancel" class="btn" type="button" onclick="closeDiv('changeUsername')">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </form>
+        </div>
+    </div>
+    <div class="profile-part">
+        <h5>Email:</h5>
+        <div class="mb-1 ms-2">
+            <div>@Model.Email</div>
+            <button onclick="update('changeEmail')" class="btn ms-1">
+                <i class="fa-solid text-warning fa-pen-to-square"></i>
+            </button>
+        </div>
+        <div id="changeEmail" hidden>
+            <form asp-action="UpdateProfile" asp-route-id="email">
+                <input name="newValue" type="email" class="form-control me-2" required placeholder="Enter new email" />
+                <button type="submit" class="btn btn-outline-success me-1">Save</button>
+                <button title="cancel" class="btn" type="button" onclick="closeDiv('changeEmail')">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </form>
+        </div>
+    </div>
+    <div class="profile-part">
+        <h5>Merge Key:</h5>
+        <div class="mb-1 ms-2">
+            <div>@Model.MergeKey</div>
+            <button onclick="update('changeMergeKey')" class="btn ms-1">
+                <i class="fa-solid text-warning fa-pen-to-square"></i>
+            </button>
+        </div>
+        <div id="changeMergeKey" hidden>
+            <form asp-action="UpdateProfile" asp-route-id="mergeKey">
+                <input name="newValue" class="form-control me-2" required placeholder="Enter new key" />
+                <button type="submit" class="btn btn-outline-success me-1">Save</button>
+                <button title="cancel" class="btn" type="button" onclick="closeDiv('changeMergeKey')">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </form>
+        </div>
+    </div>
+    <hr />
+    <h4>Other</h4>
+    <a asp-action="ChangePassword" asp-controller="Account" asp-route-userId="@Model.Id" class="btn btn-link py-1">Change password</a>
+    <a asp-action="SecurityQuestion" asp-controller="Account" asp-route-username="@Model.UserName" asp-route-sendingAction="Profile"
+       class="btn btn-link py-1 mt-1">
+        Change security question and answer
+    </a>
+</div>
