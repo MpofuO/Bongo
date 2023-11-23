@@ -4,6 +4,13 @@
     ViewData["Title"] = "Upload timetable";
 }
 
+@if (TempData["Message"] != null)
+{
+    <div class="alert alert-warning alert-dismissible fade show alert-table" role="alert">
+        <i class="fa-solid fa-check"></i>
+        @TempData["Message"]
+    </div>
+}
 <div class="session-prep bg-light shadow w-sm-50">
     <form asp-action="Upload" method="post" enctype="multipart/form-data">
         <div class="mb-2">

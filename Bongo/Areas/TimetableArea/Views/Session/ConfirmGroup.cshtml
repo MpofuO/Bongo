@@ -4,6 +4,13 @@
     ViewData["Title"] = "Add Session";
 }
 
+@if (TempData["Message"] != null)
+{
+    <div class="alert alert-warning alert-dismissible fade show alert-table" role="alert">
+        <i class="fa-solid fa-check"></i>
+        @TempData["Message"]
+    </div>
+}
 <div class="session-prep bg-light shadow w-sm-50">
     <h4 class="mb-5">Confirm adding session</h4>
     <p><strong>@Model.ModuleCode</strong> already has a session for <strong>@Model.SessionType @Model.SessionNumber</strong>, would you like to continue to add this session and select it as the one you will attend</p>

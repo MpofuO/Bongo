@@ -287,6 +287,11 @@ namespace Bongo.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+        public IActionResult MergeKey()
+        {
+            return View();
+        }
+
         [AllowAnonymous]
         public IActionResult AccessDenied()
         {

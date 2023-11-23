@@ -31,7 +31,7 @@ body {
 
 main {
     height: 100vh;
-    display:grid;
+    display: grid;
 }
 
 .home-menu {
@@ -51,6 +51,7 @@ main {
     box-shadow: .1rem .1rem rgb(105, 140, 170, 0.52) !important;
     transition: background-color ease-in 0.1s;
 }
+
     .menu-card:hover {
         background-color: rgb(131, 168, 200, 0.52);
     }
@@ -64,11 +65,13 @@ main {
         text-decoration: none;
         color: black;
     }
+
         .menu-card a:hover i {
             font-size: xx-large;
         }
+
         .menu-card a:hover h4 {
-            color:black;
+            color: black;
         }
 
     .menu-card div {
@@ -84,13 +87,12 @@ main {
     .menu-card i {
         font-size: x-large;
         position: relative;
-        transition:font-size ease-in 0.1s;
+        transition: font-size ease-in 0.1s;
     }
 
-    .icon{
-        position:absolute;
-
-    }
+.icon {
+    position: absolute;
+}
 
 .modal-headers {
     color: blue;
@@ -109,6 +111,15 @@ main {
 
 .register-form {
     width: 400px;
+}
+
+alert-table {
+    position: absolute;
+    top: -40px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: fit-content;
+    height:fit-content;
 }
 
 /*.break-section {
@@ -301,13 +312,15 @@ footer {
 
 
 .profile-part h5 {
-    margin:0;
+    margin: 0;
 }
+
 .profile-part div, .profile-part div div {
     display: flex;
     align-content: center;
-    flex-wrap:wrap;
+    flex-wrap: wrap;
 }
-.profile-part div form {
-    display: flex;
-}
+
+    .profile-part div form {
+        display: flex;
+    }

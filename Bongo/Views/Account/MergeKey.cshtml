@@ -1,0 +1,28 @@
+﻿@{
+    Layout = "_LoginLayout";
+}
+
+@if (TempData["Message"] != null)
+{
+    <div class="alert alert-warning alert-dismissible fade show alert-table" role="alert">
+        <i class="fa-solid fa-check"></i>
+        @TempData["Message"]
+    </div>
+}
+<div class="d-grid p-2 account-forms">
+    <h4 style="justify-self:center">Set Merge Key</h4>
+    <ul class="my-2">
+        <li>A merge key is used when someone wants to merge their timetable with yours.</li>
+        <li>No one can merge with your timetable without this key. This allows for timetable privacy.</li>
+        <li>Only share your merge key with someone you want to merge with.</li>
+        <li>The key can be a name, a number or a combination of both.</li>
+        <li>The key can be changed at any time in your profile.</li>
+        <li>Please enter the key you would like to use below.</li>
+    </ul>
+    <hr />
+    <form asp-action="Profile" asp-controller="Home" asp-route-id="mergeKey" asp-route-action="mergeKey"
+          method="post" class="d-flex mb-3 justify-content-center" style="width:60%;justify-self:center;">
+        <input class="form-control" name="newValue" placeholder="enter key" required />
+        <button type="submit" class="btn btn-outline-success ms-2">Submit</button>
+    </form>
+</div>

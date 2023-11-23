@@ -6,6 +6,13 @@
     Regex daypattern = new Regex(@"Monday|Tuesday|Wednesday|Thursday|Friday");
 }
 
+@if (TempData["Message"] != null)
+{
+    <div class="alert alert-warning alert-dismissible fade show alert-table" role="alert">
+        <i class="fa-solid fa-check"></i>
+        @TempData["Message"]
+    </div>
+}
 <div class="session-prep bg-light shadow w-sm-50">
     <h4 class="mb-3">Manage Clashes</h4>
     @if (Model.Count > 0)

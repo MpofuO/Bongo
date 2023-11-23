@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Bongo.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
         private readonly UserManager<BongoUser> _userManager;
@@ -17,15 +18,22 @@ namespace Bongo.Controllers
             _userManager = userManager;
         }
 
-        public IActionResult Index()
+        [AllowAnonymous]
+        public async Task<IActionResult> Index()
         {
-            TempData["HasTimetable"] = !User.Identity.IsAuthenticated ? false :
-                _repo.Timetable.GetUserTimetable(User.Identity.Name) != null;
+            if (User.Identity.IsAuthenticated)
+            {
+                TempData["HasTimetable"] = _repo.Timetable.GetUserTimetable(User.Identity.Name) != null;
+                var user = await _userManager.FindByNameAsync(User.Identity.Name);
+                if (user.MergeKey == default)
+                    return RedirectToAction("MergeKey", "Account");
+            }
+            else
+                TempData["HasTimetable"] = false;
 
             return View();
         }
         [HttpPost]
-        [Authorize]
         public async Task<IActionResult> Notice()
         {
             var user = await _userManager.FindByNameAsync(User.Identity.Name);
@@ -36,11 +44,31 @@ namespace Bongo.Controllers
                             );
             return RedirectToAction("Index");
         }
-        [Authorize]
         public async Task<IActionResult> Profile()
         {
             var user = await _userManager.FindByNameAsync(User.Identity.Name);
             return View(user);
+        }
+        [HttpPost]
+        [ActionName("Profile")]
+        public async Task<IActionResult> UpdateProfile(string id, string action, string newValue)
+        {
+            BongoUser user = await _userManager.FindByNameAsync(User.Identity.Name);
+
+            switch (id)
+            {
+                case "username": user.UserName = newValue; break;
+                case "email": user.Email = newValue; break;
+                case "mergeKey": user.MergeKey = newValue; break;
+            }
+
+            var result = await _userManager.UpdateAsync(user);
+            if (result.Succeeded)
+                TempData["Message"] = "Your account detail(s) have successfully been updated";
+            else
+                TempData["Message"] = "Failed to update account detail(s)";
+
+            return action == "mergeKey" ? RedirectToAction("Index") : RedirectToAction("Profile");
         }
     }
 }

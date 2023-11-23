@@ -3,6 +3,13 @@
     ViewData["Title"] = "Choose Groups";
 }
 
+@if (TempData["Message"] != null)
+{
+    <div class="alert alert-warning alert-dismissible fade show alert-table" role="alert">
+        <i class="fa-solid fa-check"></i>
+        @TempData["Message"]
+    </div>
+}
 <div class="session-prep bg-light shadow w-sm-50">
     <h4 class="mb-3">Manage Groups</h4>
     @if (Model.GroupedLectures.Count > 0)

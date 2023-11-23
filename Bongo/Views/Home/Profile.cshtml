@@ -4,6 +4,13 @@
     ViewData["Title"] = "Profile";
 }
 
+@if (TempData["Message"] != null)
+{
+    <div class="alert alert-warning alert-dismissible fade show alert-table" role="alert">
+        <i class="fa-solid fa-check"></i>
+        @TempData["Message"]
+    </div>
+}
 <div class="account-forms mt-4 p-3 shadow" style="width:330px;justify-self:center; height:fit-content;">
     <div class="profile-part">
         <h5>Username:</h5>
@@ -14,7 +21,7 @@
             </button>
         </div>
         <div id="changeUsername" hidden>
-            <form asp-action="UpdateProfile" asp-route-id="username">
+            <form asp-action="Profile" asp-route-id="username" method="post">
                 <input name="newValue" class="form-control me-2" required placeholder="Enter new username" />
                 <button type="submit" class="btn btn-outline-success me-1">Save</button>
                 <button title="cancel" class="btn" type="button" onclick="closeDiv('changeUsername')">
@@ -32,7 +39,7 @@
             </button>
         </div>
         <div id="changeEmail" hidden>
-            <form asp-action="UpdateProfile" asp-route-id="email">
+            <form asp-action="Profile" asp-route-id="email" method="post">
                 <input name="newValue" type="email" class="form-control me-2" required placeholder="Enter new email" />
                 <button type="submit" class="btn btn-outline-success me-1">Save</button>
                 <button title="cancel" class="btn" type="button" onclick="closeDiv('changeEmail')">
@@ -50,7 +57,7 @@
             </button>
         </div>
         <div id="changeMergeKey" hidden>
-            <form asp-action="UpdateProfile" asp-route-id="mergeKey">
+            <form asp-action="Profile" asp-route-id="mergeKey" method="post">
                 <input name="newValue" class="form-control me-2" required placeholder="Enter new key" />
                 <button type="submit" class="btn btn-outline-success me-1">Save</button>
                 <button title="cancel" class="btn" type="button" onclick="closeDiv('changeMergeKey')">

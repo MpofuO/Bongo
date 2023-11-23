@@ -16,12 +16,12 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\20208\Desktop\New folder\Bongo4Students\Bongo
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/20208/Desktop/New folder/Bongo4Students/Bongo/Areas/TimetableArea/Views/LandingPage/CreateTimetable.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXNcVGltZXRhYmxlQXJlYVxWaWV3c1xMYW5kaW5nUGFnZVxDcmVhdGVUaW1ldGFibGUuY3NodG1s
+[C:/Users/20208/Desktop/New folder/Bongo4Students/Bongo/Areas/TimetableArea/Views/HowItWorks/CreateTimetable.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcVGltZXRhYmxlQXJlYVxWaWV3c1xIb3dJdFdvcmtzXENyZWF0ZVRpbWV0YWJsZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/20208/Desktop/New folder/Bongo4Students/Bongo/Areas/TimetableArea/Views/LandingPage/MergeTimetables.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXNcVGltZXRhYmxlQXJlYVxWaWV3c1xMYW5kaW5nUGFnZVxNZXJnZVRpbWV0YWJsZXMuY3NodG1s
+[C:/Users/20208/Desktop/New folder/Bongo4Students/Bongo/Areas/TimetableArea/Views/HowItWorks/MergeTimetables.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcVGltZXRhYmxlQXJlYVxWaWV3c1xIb3dJdFdvcmtzXE1lcmdlVGltZXRhYmxlcy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/20208/Desktop/New folder/Bongo4Students/Bongo/Areas/TimetableArea/Views/Merger/ChooseSemester.cshtml]
@@ -110,6 +110,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/20208/Desktop/New folder/Bongo4Students/Bongo/Views/Account/ForgotPassword.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxGb3Jnb3RQYXNzd29yZC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/20208/Desktop/New folder/Bongo4Students/Bongo/Views/Account/MergeKey.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxNZXJnZUtleS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/20208/Desktop/New folder/Bongo4Students/Bongo/Views/Account/Register.cshtml]
