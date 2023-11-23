@@ -33,7 +33,7 @@ namespace Bongo.Areas.TimetableArea.Controllers
         public IActionResult SetSemester(bool isForFirstSemester)
         {
             _isForFirstSemester = isForFirstSemester;
-            mergedUsers = new List<string>();
+            mergedUsers = new();
             return RedirectToAction("ReviewCurrentUser");
         }
         public IActionResult ReviewCurrentUser()
